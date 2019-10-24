@@ -1,0 +1,52 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+body, input {
+    font-size: 12pt;
+}
+
+.header {
+    box-sizing: border-box;
+    background: rgb(36, 41, 46);
+    color: white;
+    height: 40px;
+    padding: 10px 20px;
+}
+
+.header a {
+    color: white;
+    font-weight: bold;
+    margin: 0em 0.2em;
+    padding: 0.2em 0.7em;
+    background: #666;
+    text-decoration: none;
+}
+
+a.active {
+    background: #eee;
+    color: black;
+}
+
+.spacer {
+    display: inline-block;
+    width: 0px;
+    height: 40px;
+    background: #666;
+    margin: -1em 1em;
+}
+
+#theView {
+    width: 100%;
+    height: 100vh;
+    margin-bottom: -40px;
+    background: #eee;
+}
+
+input {
+    background: rgb(36, 41, 46);
+    color: white;
+    border: solid 1px #444;
+    padding: 0.1em 0.3em;
+}

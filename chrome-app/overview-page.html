@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="overview-page.css">
+        <script src="jquery-3.4.1.min.js"></script>
+        <script src="page-script.js"></script>
+    </head>
+    <body>
+        <div class="header">
+            Username <input id="username" type="text" size="10">
+            <div class="spacer"></div>
+            <span id="quicklinks">
+                <a href="#">PRs to review</a>
+                <a href="#">Untriaged issues</a>
+                <a href="#">PRs to shepherd</a>
+                <a href="#">Your bugs</a>
+            </span>
+        </div>
+        <webview partition="static" id="theView" src="startup.html"></webview>
+    </body>
+</html>

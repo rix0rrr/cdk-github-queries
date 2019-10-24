@@ -1,0 +1,23 @@
+{
+    "name": "Your CDK GitHub work",
+    "description" : "Get quick access to common GitHub filter queries you need to work on the CDK",
+    "version": "0.1",
+    "manifest_version": 2,
+    "icons": { "32": "cdk-logo-small.png" },
+    "app": {
+        "background": {
+            "scripts": ["background.js"]
+        }
+    },
+    "permissions": ["webview", "storage"],
+    "webview": {
+        "partitions": [
+            {
+                "name": "static",
+                "accessible_resources": [
+                    "startup.html"
+                ]
+            }
+        ]
+    }
+}
