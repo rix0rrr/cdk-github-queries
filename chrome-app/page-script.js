@@ -1,4 +1,6 @@
 $(function() {
+    const webViewEl = $('#theView').get(0);
+
     // LINKS
     const LINKS = [
         { title: "PRs to review", href: "https://github.com/pulls/review-requested" },
@@ -26,9 +28,15 @@ $(function() {
     }
 
     function visit(link, anchor) {
-        $('#theView').get(0).src = getHref(link);
         $('#quicklinks .active').removeClass('active');
         anchor.addClass('active');
+
+        // Send a message to the background script to show something else in the WebView
+        // This is necessary to make the WebView be able to make a distinction between
+        // tabbed navigation and in-page navigation.
+        chrome.runtime.sendMessage({
+            showInApp: getHref(link)
+        });
     }
 
     // USERNAME

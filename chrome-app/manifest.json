@@ -9,7 +9,7 @@
             "scripts": ["background.js"]
         }
     },
-    "permissions": ["webview", "storage"],
+    "permissions": ["webview", "storage", "browser"],
     "webview": {
         "partitions": [
             {
