@@ -1,5 +1,5 @@
 {
-    "name": "Your CDK GitHub work",
+    "name": "CDK GitHub Queries",
     "description" : "Get quick access to common GitHub filter queries you need to work on the CDK",
     "version": "0.1",
     "manifest_version": 2,
