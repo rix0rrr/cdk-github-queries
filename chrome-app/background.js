@@ -21,6 +21,12 @@ chrome.app.runtime.onLaunched.addListener(function() {
                     console.log('Opening new tab');
                     webViewEl.stop();
                     open(event.url, '_blank').focus();
+                } else {
+                    // Loading in WebView. Insert some CSS to hide GitHub's top banner.
+                    webViewEl.insertCSS({
+                        runAt: 'document_start',
+                        code: '.js-header-wrapper { display: none; }',
+                    });
                 }
             }
         }
