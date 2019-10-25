@@ -13,11 +13,20 @@ chrome.app.runtime.onLaunched.addListener(function() {
         let appNavigatingTo;
         const webViewEl = appWindow.document.getElementById('theView');
 
+        function keepPageLoadInWebView(url) {
+            return (url.startsWith('chrome-extension://')
+                || url === appNavigatingTo
+                || url === 'https://github.com/'
+                || url.startsWith('https://github.com/login')
+                || url.startsWith('https://github.com/session'));
+        }
+
+
         // Intercept all non-app-triggered loads (i.e., user navigation) and direct it to a new browser tab.
         function makeNavigateHandler(eventType) {
             return function(event) {
                 console.log('Navigating to', event.url, '(' + eventType + ')');
-                if (!event.url.startsWith('chrome-extension://') && event.url !== appNavigatingTo) {
+                if (!keepPageLoadInWebView(event.url)) {
                     console.log('Opening new tab');
                     webViewEl.stop();
                     open(event.url, '_blank').focus();

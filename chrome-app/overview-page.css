@@ -7,8 +7,11 @@ body, input {
     font-size: 12pt;
 }
 
-.header {
+* {
     box-sizing: border-box;
+}
+
+.header {
     background: rgb(36, 41, 46);
     color: white;
     height: 40px;
@@ -22,11 +25,20 @@ body, input {
     padding: 0.2em 0.7em;
     background: #666;
     text-decoration: none;
+    height: 12pt;
 }
 
 a.active {
     background: #eee;
     color: black;
+}
+
+.header a.low-key {
+    font-weight: normal;
+    background: #333;
+    background: rgb(36, 41, 46);
+    border: solid 1px #444;
+    padding: 0.1em 0.3em;
 }
 
 .spacer {
@@ -49,4 +61,5 @@ input {
     color: white;
     border: solid 1px #444;
     padding: 0.1em 0.3em;
+    height: 18pt;
 }

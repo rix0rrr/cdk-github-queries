@@ -22,11 +22,19 @@ $(function() {
         $('#quicklinks .active').removeClass('active');
         anchor.addClass('active');
 
+        openInWebView(getHref(link));
+    }
+
+    $('#login-btn').click(function() {
+        openInWebView('https://github.com/login');
+    });
+
+    function openInWebView(url) {
         // Send a message to the background script to show something else in the WebView
         // This is necessary to make the WebView be able to make a distinction between
         // tabbed navigation and in-page navigation.
         chrome.runtime.sendMessage({
-            showInApp: getHref(link)
+            showInApp: url
         });
     }
 
