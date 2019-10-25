@@ -1,15 +1,6 @@
 $(function() {
     const webViewEl = $('#theView').get(0);
 
-    // LINKS
-    const LINKS = [
-        { title: "PRs to review", href: "https://github.com/pulls/review-requested" },
-        { title: "Untriaged bugs", href: "https://github.com/aws/aws-cdk/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+assignee%3A{}+label%3Abug+-label%3Ap0+-label%3Ap1+-label%3Ap2+-label%3Ap3+" },
-        { title: "PRs to shepherd", href: "https://github.com/pulls/assigned" },
-        { title: "Your bugs", href: "https://github.com/aws/aws-cdk/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+assignee%3A{}+label%3Abug" },
-        { title: "Your issues", href: "https://github.com/issues/assigned" },
-    ];
-
     function getHref(link) {
         return link.href.replace('{}', $('#username').val());
     }
