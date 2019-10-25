@@ -27,9 +27,8 @@ chrome.app.runtime.onLaunched.addListener(function() {
             return function(event) {
                 console.log('Navigating to', event.url, '(' + eventType + ')');
                 if (!keepPageLoadInWebView(event.url)) {
-                    console.log('Opening new tab');
                     webViewEl.stop();
-                    open(event.url, '_blank').focus();
+                    openTab(event.url);
                 } else {
                     // Loading in WebView. Insert some CSS to hide GitHub's top banner.
                     webViewEl.insertCSS({
@@ -38,6 +37,21 @@ chrome.app.runtime.onLaunched.addListener(function() {
                     });
                 }
             }
+        }
+
+        let alreadyOpened;
+        function openTab(url) {
+            // Prevent double opens if both 'loadstart' and 'loadcommit' fire
+            // in quick succession.
+            if (alreadyOpened === url) { return; }
+
+            console.log('Opening new tab');
+            open(url, '_blank').focus();
+            alreadyOpened = url;
+            setTimeout(function() {
+                alreadyOpened = undefined;
+            }, 500);
+
         }
 
         // In principle 'loadstart' should be enough, but I've gotten into a state
