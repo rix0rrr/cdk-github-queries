@@ -2,7 +2,7 @@ $(function() {
     const webViewEl = $('#theView').get(0);
 
     function getHref(link) {
-        return link.href.replace(/\{\}/g, $('#username').val());
+        return link.href.replace(/USERNAME/g, $('#username').val());
     }
 
     function updateLinks() {
