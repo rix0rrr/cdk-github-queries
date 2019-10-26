@@ -3,7 +3,7 @@ CDK GitHub queries
 
 A trivial Chrome app to keep track of common GitHub issue queries.
 
-![Screenshot](screenshot.png)
+![Screenshot](screenshot2.png)
 
 ## Installation
 
