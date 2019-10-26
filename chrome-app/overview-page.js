@@ -8,12 +8,22 @@ $(function() {
     function updateLinks() {
         const linksEl = $('#quicklinks').empty();
 
-        LINKS.forEach(function (link) {
-            const anchor = $('<a></a>').attr('href', '#').text(link.title).appendTo(linksEl);
+        LINKS.forEach(linkGroup => {
+            const groupEl = $('<div></div>').addClass('link-group').appendTo(linksEl);
+            linkGroup.map(link => {
+                let el;
+                if (link.href) {
+                    el = $('<a></a>')
+                        .attr('href', '#')
+                        .click(function() {
+                            visit(link, el);
+                            return false;
+                        });
+                } else {
+                    el = $('<span></span>');
+                }
 
-            anchor.click(function() {
-                visit(link, anchor);
-                return false;
+                el.text(link.title).addClass('header-el').addClass(link.classes || '').appendTo(groupEl)
             });
         });
     }
