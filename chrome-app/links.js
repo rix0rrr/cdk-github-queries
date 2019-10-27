@@ -30,6 +30,7 @@ const LINKS = [
         ))
     ],
     [
+        { title: "Small", href: gitHubQuery('https://github.com/issues', [...issue, ...ourRepos, "assignee:USERNAME", "label:bug", "-label:fix-ready", "label:effort/small" ] ) },
         { title: "Non-bugs", href: gitHubQuery("https://github.com/issues/assigned", [...issue, ...ourRepos, "-label:bug"]) },
     ]
 ];
