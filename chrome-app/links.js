@@ -13,7 +13,7 @@ function gitHubQuery(base, clauses) {
 const pr = ["is:open", "is:pr", "archived:false"];
 const issue = ["is:open", "is:issue", "archived:false"];
 const ourRepos = ["repo:aws/jsii", "repo:aws/aws-cdk"];
-
+const hideInProgress = [ "-label:status/in-progress" ];
 
 // LINKS
 const LINKS = [
@@ -26,10 +26,11 @@ const LINKS = [
     [
         { title: "P", classes: "narrow" },
         ...[0, 1, 2, 3].map(p => (
-            { title: p, href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", "label:bug", "label:p" + p, "-label:fix-ready" ]), classes: 'narrow' }
+            { title: p, href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", "label:bug", "label:p" + p, ...hideInProgress ]), classes: 'narrow' }
         ))
     ],
     [
+        { title: "Small", href: gitHubQuery('https://github.com/issues', [...issue, ...ourRepos, "assignee:USERNAME", "label:bug", ...hideInProgress, "label:effort/small" ] ) },
         { title: "Non-bugs", href: gitHubQuery("https://github.com/issues/assigned", [...issue, ...ourRepos, "-label:bug"]) },
     ]
 ];
