@@ -23,7 +23,7 @@ $(function() {
                     el = $('<span></span>');
                 }
 
-                el.text(link.title).addClass('header-el').addClass(link.classes || '').appendTo(groupEl)
+                el.text(link.title).attr('title', link.description || '').addClass('header-el').addClass(link.classes || '').appendTo(groupEl)
             });
         });
     }
