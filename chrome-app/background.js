@@ -11,6 +11,7 @@ chrome.app.runtime.onLaunched.addListener(function() {
 
     function onApplicationWindowLoaded(appWindow) {
         let appNavigatingTo;
+        let navigationFeatures = {};
         const webViewEl = appWindow.document.getElementById('theView');
 
         function keepPageLoadInWebView(url) {
@@ -33,10 +34,25 @@ chrome.app.runtime.onLaunched.addListener(function() {
                     // Loading in WebView. Insert some CSS to hide GitHub's top banner.
                     webViewEl.insertCSS({
                         runAt: 'document_start',
-                        code: '.js-header-wrapper { display: none; }',
+                        code: gitHubCssToInject()
                     });
                 }
             }
+        }
+
+        function gitHubCssToInject() {
+            const lines = [
+                '.js-header-wrapper { display: none; }',
+            ];
+
+            if (navigationFeatures.unreadOnly) {
+                lines.push(
+                    '.js-issue-row { display: none; }',
+                    '.js-issue-row.unread { display: block; }',
+                );
+            }
+
+            return lines.join('\n');
         }
 
         let alreadyOpened;
@@ -66,6 +82,7 @@ chrome.app.runtime.onLaunched.addListener(function() {
         chrome.runtime.onMessage.addListener(function(request, sender) {
             if (request.showInApp) {
                 appNavigatingTo = request.showInApp;
+                navigationFeatures = request.features || {};
                 webViewEl.src = appNavigatingTo;
             }
         });
