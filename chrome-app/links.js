@@ -47,7 +47,7 @@ const LINKS = [
   ],
   [
     { title: "P", classes: "narrow" },
-    ...[0, 1, 2, 3].map(p => (
+    ...[0, 1, 2].map(p => (
         {
           title: p,
           href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", "label:bug", "label:p" + p, ...hideInProgress ]),
