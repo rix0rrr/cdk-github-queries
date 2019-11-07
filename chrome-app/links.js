@@ -26,7 +26,7 @@ const LINKS = [
   [
     {
       title: "Review",
-      href: "https://github.com/pulls/review-requested",
+      href: gitHubQuery("https://github.com/pulls", [ ...pr, "review-requested:USERNAME", " -review:approved" ]),
       description: "Pull requests waiting for your review."
     },
     {
