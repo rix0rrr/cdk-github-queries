@@ -36,7 +36,7 @@ const LINKS = [
     },
     {
       title: "Shepherd",
-      href: gitHubQuery("https://github.com/pulls", [...pr, "assignee:USERNAME", "-author:USERNAME" ]),
+      href: gitHubQuery("https://github.com/pulls", [...pr, "assignee:USERNAME", "-author:USERNAME", "review:required" ]),
       description: "Contributor pull requests you are responsible for reviewing and merging",
     },
     {
