@@ -20,6 +20,7 @@ const pr = ["is:open", "is:pr", "archived:false"];
 const issue = ["is:open", "is:issue", "archived:false"];
 const ourRepos = ["repo:aws/jsii", "repo:aws/aws-cdk"];
 const hideInProgress = [ "-label:status/in-progress" ];
+const sortByOldestFirst = [ "sort:created-asc" ];
 
 // LINKS
 const LINKS = [
@@ -50,7 +51,7 @@ const LINKS = [
     ...[0, 1, 2].map(p => (
         {
           title: p,
-          href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", "label:bug", "label:p" + p, ...hideInProgress ]),
+          href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", "label:bug", "label:p" + p, ...hideInProgress, ...sortByOldestFirst ]),
           classes: 'narrow',
           description: P_DESCRIPTIONS[p],
         }
@@ -59,7 +60,7 @@ const LINKS = [
   [
     {
       title: "Small",
-      href: gitHubQuery('https://github.com/issues', [...issue, ...ourRepos, "assignee:USERNAME", "label:bug", ...hideInProgress, "label:effort/small" ]),
+      href: gitHubQuery('https://github.com/issues', [...issue, ...ourRepos, "assignee:USERNAME", "label:bug", ...hideInProgress, "label:effort/small", ...sortByOldestFirst ]),
       description: "Small bugs you might be able to take care of between the soup and the potatoes.",
     },
     {
