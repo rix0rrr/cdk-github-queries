@@ -45,6 +45,11 @@ const LINKS = [
       href: "https://github.com/pulls",
       description: "Your pull requests"
     },
+    {
+      title: "RFCs",
+      href: gitHubQuery("https://github.com/pulls", [...pr, "label:management/rfc" ]),
+      description: "Requests for comments",
+    }
   ],
   [
     { title: "P", classes: "narrow" },
