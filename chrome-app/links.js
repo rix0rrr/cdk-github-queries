@@ -21,6 +21,7 @@ const issue = ["is:open", "is:issue", "archived:false"];
 const ourRepos = ["repo:aws/jsii", "repo:aws/aws-cdk"];
 const hideInProgress = [ "-label:status/in-progress" ];
 const sortByOldestFirst = [ "sort:created-asc" ];
+const sortByRecentUpdates = [ "sort:updated-desc" ];
 
 // LINKS
 const LINKS = [
@@ -70,7 +71,7 @@ const LINKS = [
     },
     {
       title: "Non-bugs",
-      href: gitHubQuery("https://github.com/issues/assigned", [...issue, ...ourRepos, "-label:bug"]),
+      href: gitHubQuery("https://github.com/issues/assigned", [...issue, ...ourRepos, "-label:bug", ...sortByRecentUpdates]),
       description: "Feature requests and other issues.",
     },
   ]
