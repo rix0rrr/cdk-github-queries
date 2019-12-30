@@ -18,7 +18,7 @@ const P_DESCRIPTIONS = {
 
 const pr = ["is:open", "is:pr", "archived:false"];
 const issue = ["is:open", "is:issue", "archived:false"];
-const ourRepos = ["repo:aws/jsii", "repo:aws/aws-cdk"];
+const ourRepos = ["repo:aws/jsii", "repo:aws/aws-cdk", "repo:awslabs/aws-cdk-rfcs", "repo:awslabs/cdk-ops", "repo:aws-samples/aws-cdk-examples"];
 const hideInProgress = [ "-label:status/in-progress" ];
 const sortByOldestFirst = [ "sort:created-asc" ];
 
