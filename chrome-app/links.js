@@ -21,6 +21,7 @@ const issue = ["is:open", "is:issue", "archived:false"];
 const ourRepos = ["repo:aws/jsii", "repo:aws/aws-cdk", "repo:aws/aws-cdk-rfcs", "repo:awslabs/cdk-ops", "repo:aws-samples/aws-cdk-examples"];
 const hideInProgress = [ "-label:status/in-progress" ];
 const sortByOldestFirst = [ "sort:created-asc" ];
+const sortByRecentUpdates = [ "sort:updated-desc" ];
 
 // LINKS
 const LINKS = [
