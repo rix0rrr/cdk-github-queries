@@ -18,7 +18,7 @@ const P_DESCRIPTIONS = {
 
 const pr = ["is:open", "is:pr", "archived:false"];
 const issue = ["is:open", "is:issue", "archived:false"];
-const ourRepos = ["repo:aws/jsii", "repo:aws/aws-cdk", "repo:awslabs/aws-cdk-rfcs", "repo:awslabs/cdk-ops", "repo:aws-samples/aws-cdk-examples"];
+const ourRepos = ["repo:aws/jsii", "repo:aws/aws-cdk", "repo:aws/aws-cdk-rfcs", "repo:awslabs/cdk-ops", "repo:aws-samples/aws-cdk-examples"];
 const hideInProgress = [ "-label:status/in-progress" ];
 const sortByOldestFirst = [ "sort:created-asc" ];
 
@@ -64,15 +64,15 @@ const LINKS = [
       description: "Contributor pull requests you are responsible for reviewing and merging",
     },
     {
+      title: "RFCs",
+      href: gitHubQuery("https://github.com/pulls", [...pr, "label:management/rfc" ]),
+      description: "Requests for comments",
+    },
+    {
       title: "Finish",
       href: "https://github.com/pulls",
       description: "Your pull requests"
     },
-    {
-      title: "RFCs",
-      href: gitHubQuery("https://github.com/pulls", [...pr, "label:management/rfc" ]),
-      description: "Requests for comments",
-    }
   ],
   [
     { title: "Bugs", classes: "narrow" },
@@ -95,4 +95,10 @@ const LINKS = [
         }
     ))
   ],
+  [
+    {
+      title: 'Workflow',
+      href: 'https://github.com/aws/aws-cdk/wiki/Triage-Workflow'
+    }
+  ]
 ];
