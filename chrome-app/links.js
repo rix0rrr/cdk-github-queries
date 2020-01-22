@@ -29,27 +29,25 @@ const LINKS = [
     { title: "Triage", classes: "narrow" },
     {
       title: "B",
-      href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", 
+      href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", ...hideInProgress, ...sortByOldestFirst,
         "label:bug",
         "-label:p0", "-label:p1", "-label:p2", "-label:p3" , 
-        "-label:effort/small", "-label:effort/medium", "-label:effort/large",
-        "-label:guidance",
       ]),
       description: "For bugs, label with priority",
     },
     {
       title: "F",
-      href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", 
-        "-label:bug",
-        "-label:p0", "-label:p1", "-label:p2", "-label:p3" , 
+      href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", ...hideInProgress, ...sortByOldestFirst, 
+        "-label:bug", "-label:guidance", // everything that's not guidance or bug is a feature (just to make sure we don't miss anything)
         "-label:effort/small", "-label:effort/medium", "-label:effort/large",
-        "-label:guidance",
       ]),
       description: "For bugs, label with priority",
     },
     {
       title: "G",
-      href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", "label:guidance", ...hideInProgress, ...sortByOldestFirst ]),
+      href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", ...hideInProgress, ...sortByOldestFirst,
+        "label:guidance", 
+      ]),
       description: "Questions asked by users, refer them to Stack Overflow or Gitter if possible",
     }
   ],
