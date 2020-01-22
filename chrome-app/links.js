@@ -18,7 +18,7 @@ const P_DESCRIPTIONS = {
 
 const pr = ["is:open", "is:pr", "archived:false"];
 const issue = ["is:open", "is:issue", "archived:false"];
-const ourRepos = ["repo:aws/jsii", "repo:aws/aws-cdk", "repo:awslabs/aws-cdk-rfcs", "repo:awslabs/cdk-ops", "repo:aws-samples/aws-cdk-examples"];
+const ourRepos = ["repo:aws/jsii", "repo:aws/aws-cdk", "repo:aws/aws-cdk-rfcs", "repo:awslabs/cdk-ops", "repo:aws-samples/aws-cdk-examples"];
 const hideInProgress = [ "-label:status/in-progress" ];
 const sortByOldestFirst = [ "sort:created-asc" ];
 const sortByRecentUpdates = [ "sort:updated-desc" ];
@@ -26,15 +26,36 @@ const sortByRecentUpdates = [ "sort:updated-desc" ];
 // LINKS
 const LINKS = [
   [
+    { title: "Triage", classes: "narrow" },
+    {
+      title: "B",
+      href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", ...hideInProgress, ...sortByOldestFirst,
+        "label:bug",
+        "-label:p0", "-label:p1", "-label:p2", "-label:p3" , 
+      ]),
+      description: "For bugs, label with priority",
+    },
+    {
+      title: "F",
+      href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", ...hideInProgress, ...sortByOldestFirst, 
+        "-label:bug", "-label:guidance", // everything that's not guidance or bug is a feature (just to make sure we don't miss anything)
+        "-label:effort/small", "-label:effort/medium", "-label:effort/large",
+      ]),
+      description: "For bugs, label with priority",
+    },
+    {
+      title: "G",
+      href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", ...hideInProgress, ...sortByOldestFirst,
+        "label:guidance", 
+      ]),
+      description: "Questions asked by users, refer them to Stack Overflow or Gitter if possible",
+    }
+  ],
+  [
     {
       title: "Review",
       href: gitHubQuery("https://github.com/pulls", [ ...pr, "review-requested:USERNAME", "-review:approved" ]),
       description: "Pull requests waiting for your review."
-    },
-    {
-      title: "Triage",
-      href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", "label:bug", "-label:p0", "-label:p1", "-label:p2", "-label:p3"]),
-      description: "Confirm issue class (bug/feature) and attach a priority (p0..p3)",
     },
     {
       title: "Shepherd",
@@ -42,18 +63,18 @@ const LINKS = [
       description: "Contributor pull requests you are responsible for reviewing and merging",
     },
     {
+      title: "RFCs",
+      href: gitHubQuery("https://github.com/pulls", [...pr, "label:management/rfc" ]),
+      description: "Requests for comments",
+    },
+    {
       title: "Finish",
       href: "https://github.com/pulls",
       description: "Your pull requests"
     },
-    {
-      title: "RFCs",
-      href: gitHubQuery("https://github.com/pulls", [...pr, "label:management/rfc" ]),
-      description: "Requests for comments",
-    }
   ],
   [
-    { title: "P", classes: "narrow" },
+    { title: "Bugs", classes: "narrow" },
     ...[0, 1, 2].map(p => (
         {
           title: p,
@@ -64,15 +85,19 @@ const LINKS = [
     ))
   ],
   [
+    { title: "Features", classes: "narrow" },
+    ...['small', 'medium', 'large'].map(size => (
+        {
+          title: size[0].toUpperCase(),
+          href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", "-label:bug", "-label:guidance", `label:effort/${size}`, ...hideInProgress, ...sortByOldestFirst ]),
+          classes: 'narrow'
+        }
+    ))
+  ],
+  [
     {
-      title: "Small",
-      href: gitHubQuery('https://github.com/issues', [...issue, ...ourRepos, "assignee:USERNAME", "label:bug", ...hideInProgress, "label:effort/small", ...sortByOldestFirst ]),
-      description: "Small bugs you might be able to take care of between the soup and the potatoes.",
-    },
-    {
-      title: "Non-bugs",
-      href: gitHubQuery("https://github.com/issues/assigned", [...issue, ...ourRepos, "-label:bug", ...sortByRecentUpdates]),
-      description: "Feature requests and other issues.",
-    },
+      title: 'Workflow',
+      href: 'https://github.com/aws/aws-cdk/wiki/Triage-Workflow'
+    }
   ]
 ];
