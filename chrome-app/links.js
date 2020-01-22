@@ -25,15 +25,38 @@ const sortByOldestFirst = [ "sort:created-asc" ];
 // LINKS
 const LINKS = [
   [
+    { title: "Triage", classes: "narrow" },
+    {
+      title: "B",
+      href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", 
+        "label:bug",
+        "-label:p0", "-label:p1", "-label:p2", "-label:p3" , 
+        "-label:effort/small", "-label:effort/medium", "-label:effort/large",
+        "-label:guidance",
+      ]),
+      description: "For bugs, label with priority",
+    },
+    {
+      title: "F",
+      href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", 
+        "-label:bug",
+        "-label:p0", "-label:p1", "-label:p2", "-label:p3" , 
+        "-label:effort/small", "-label:effort/medium", "-label:effort/large",
+        "-label:guidance",
+      ]),
+      description: "For bugs, label with priority",
+    },
+    {
+      title: "G",
+      href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", "label:guidance", ...hideInProgress, ...sortByOldestFirst ]),
+      description: "Questions asked by users, refer them to Stack Overflow or Gitter if possible",
+    }
+  ],
+  [
     {
       title: "Review",
       href: gitHubQuery("https://github.com/pulls", [ ...pr, "review-requested:USERNAME", "-review:approved" ]),
       description: "Pull requests waiting for your review."
-    },
-    {
-      title: "Triage",
-      href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", "label:bug", "-label:p0", "-label:p1", "-label:p2", "-label:p3"]),
-      description: "Confirm issue class (bug/feature) and attach a priority (p0..p3)",
     },
     {
       title: "Shepherd",
@@ -52,7 +75,7 @@ const LINKS = [
     }
   ],
   [
-    { title: "P", classes: "narrow" },
+    { title: "Bugs", classes: "narrow" },
     ...[0, 1, 2].map(p => (
         {
           title: p,
@@ -63,15 +86,13 @@ const LINKS = [
     ))
   ],
   [
-    {
-      title: "Small",
-      href: gitHubQuery('https://github.com/issues', [...issue, ...ourRepos, "assignee:USERNAME", "label:bug", ...hideInProgress, "label:effort/small", ...sortByOldestFirst ]),
-      description: "Small bugs you might be able to take care of between the soup and the potatoes.",
-    },
-    {
-      title: "Non-bugs",
-      href: gitHubQuery("https://github.com/issues/assigned", [...issue, ...ourRepos, "-label:bug"]),
-      description: "Feature requests and other issues.",
-    },
-  ]
+    { title: "Features", classes: "narrow" },
+    ...['small', 'medium', 'large'].map(size => (
+        {
+          title: size[0].toUpperCase(),
+          href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", "-label:bug", "-label:guidance", `label:effort/${size}`, ...hideInProgress, ...sortByOldestFirst ]),
+          classes: 'narrow'
+        }
+    ))
+  ],
 ];
