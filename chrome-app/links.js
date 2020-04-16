@@ -31,22 +31,23 @@ const LINKS = [
       title: "B",
       href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", ...sortByOldestFirst,
         "label:bug",
-        "-label:p0", "-label:p1", "-label:p2", "-label:p3" , 
+        "-label:p0", "-label:p1", "-label:p2", "-label:p3" ,
       ]),
       description: "For bugs, label with priority",
     },
     {
       title: "F",
-      href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", ...sortByOldestFirst, 
+      href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", ...sortByOldestFirst,
         "-label:bug", "-label:guidance", // everything that's not guidance or bug is a feature (just to make sure we don't miss anything)
         "-label:effort/small", "-label:effort/medium", "-label:effort/large",
+        "-label:management/tracking", // The tracking issues distract from things that need attention
       ]),
       description: "For bugs, label with priority",
     },
     {
       title: "G",
       href: gitHubQuery("https://github.com/issues", [...issue, ...ourRepos, "assignee:USERNAME", ...sortByOldestFirst,
-        "label:guidance", 
+        "label:guidance",
       ]),
       description: "Questions asked by users, refer them to Stack Overflow or Gitter if possible",
     }
